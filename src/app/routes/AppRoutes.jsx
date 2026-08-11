@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import AuthLayout from "../layouts/AuthLayout";
 import Login from "../../features/auth/ui/pages/Login";

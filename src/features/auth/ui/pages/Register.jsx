@@ -21,7 +21,7 @@ const Register = () => {
           />
 
           {/* Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#08112B]/70 to-[#09070F]" />
+          <div className="absolute inset-0 bg-linear-to-b from-[#08112B]/70 to-[#09070F]" />
 
           {/* Content */}
           <div className="relative z-10 flex flex-col justify-between p-12 w-full">
@@ -82,7 +82,7 @@ const Register = () => {
                   Full Name
                 </label>
 
-                <div className="flex items-center border border-white/10 bg-white/[0.03] rounded-xl px-4 h-16 focus-within:border-purple-400 transition">
+                <div className="flex items-center border border-white/10 bg-white/3 rounded-xl px-4 h-16 focus-within:border-purple-400 transition">
                   <User className="text-gray-500" size={20} />
 
                   <input
@@ -108,7 +108,7 @@ const Register = () => {
                   Email Address
                 </label>
 
-                <div className="flex items-center border border-white/10 bg-white/[0.03] rounded-xl px-4 h-16 focus-within:border-purple-400 transition">
+                <div className="flex items-center border border-white/10 bg-white/3 rounded-xl px-4 h-16 focus-within:border-purple-400 transition">
                   <Mail className="text-gray-500" size={20} />
 
                   <input
@@ -134,7 +134,7 @@ const Register = () => {
                   Password
                 </label>
 
-                <div className="flex items-center border border-white/10 bg-white/[0.03] rounded-xl px-4 h-16 focus-within:border-purple-400 transition">
+                <div className="flex items-center border border-white/10 bg-white/3 rounded-xl px-4 h-16 focus-within:border-purple-400 transition">
                   <Lock className="text-gray-500" size={20} />
 
                   <input
@@ -194,7 +194,7 @@ const Register = () => {
               {/* Submit */}
               <button
                 type="submit"
-                className="w-full h-16 rounded-xl bg-gradient-to-r from-purple-600 to-purple-300 text-black font-semibold text-lg hover:opacity-90 transition"
+                className="w-full h-16 rounded-xl bg-linear-to-r from-purple-600 to-purple-300 text-black font-semibold text-lg hover:opacity-90 transition"
               >
                 Create Account
               </button>
@@ -212,7 +212,7 @@ const Register = () => {
               <div className="grid grid-cols-2 gap-5">
                 <button
                   type="button"
-                  className="h-16 rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] transition flex items-center justify-center gap-3"
+                  className="h-16 rounded-xl border border-white/10 bg-white/2 hover:bg-white/4 transition flex items-center justify-center gap-3"
                 >
                   <img
                     src="https://cdn-icons-png.flaticon.com/512/281/281764.png"
@@ -225,7 +225,7 @@ const Register = () => {
 
                 <button
                   type="button"
-                  className="h-16 rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] transition flex items-center justify-center gap-3"
+                  className="h-16 rounded-xl border border-white/10 bg-white/2 hover:bg-white/4 transition flex items-center justify-center gap-3"
                 >
                   <ShieldCheck size={20} />
 
@@ -262,7 +262,7 @@ const Register = () => {
           <p className="hover:text-white cursor-pointer">System Status</p>
         </div>
 
-        <p>© 2024 team-sync. Enterprise Intelligence Platforms.</p>
+        <p>© 2026 team-sync. Enterprise Intelligence Platforms.</p>
       </footer>
     </div>
   );

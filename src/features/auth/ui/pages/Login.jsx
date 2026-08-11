@@ -8,9 +8,9 @@ const Login = () => {
   return (
     <div className="min-h-screen bg-[#09070F] relative overflow-hidden flex items-center justify-center px-4">
       {/* Background Glow */}
-      <div className="absolute top-[-200px] left-[-200px] w-[500px] h-[500px] bg-purple-700/10 blur-3xl rounded-full" />
+      <div className="absolute -top-50 -left-50 w-125 h-125 bg-purple-700/10 blur-3xl rounded-full" />
 
-      <div className="absolute bottom-[-200px] right-[-200px] w-[500px] h-[500px] bg-purple-700/10 blur-3xl rounded-full" />
+      <div className="absolute -bottom-50 -right-50 w-125 h-125 bg-purple-700/10 blur-3xl rounded-full" />
 
       {/* Small Decorative Card */}
       <div className="hidden lg:block absolute bottom-20 right-24 w-56 h-72 rounded-3xl overflow-hidden border border-white/10 bg-[#14111D]/60 backdrop-blur-xl">
@@ -40,7 +40,7 @@ const Login = () => {
         <div className="grid grid-cols-2 gap-4 mt-10">
           <button
             type="button"
-            className="h-14 rounded-xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] transition flex items-center justify-center gap-3 text-white font-medium"
+            className="h-14 rounded-xl border border-white/10 bg-white/3 hover:bg-white/6 transition flex items-center justify-center gap-3 text-white font-medium"
           >
             <Cloud size={18} />
             GOOGLE
@@ -48,7 +48,7 @@ const Login = () => {
 
           <button
             type="button"
-            className="h-14 rounded-xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] transition flex items-center justify-center gap-3 text-white font-medium"
+            className="h-14 rounded-xl border border-white/10 bg-white/3 hover:bg-white/6 transition flex items-center justify-center gap-3 text-white font-medium"
           >
             {/* <Github size={18} /> */}
             GITHUB
@@ -158,7 +158,7 @@ const Login = () => {
 
       {/* Bottom Footer */}
       <div className="absolute bottom-10 text-center text-gray-500 text-sm">
-        <p>© 2024 Synthetix AI. Enterprise Intelligence Platforms.</p>
+        <p>© 2026 team-sync. Enterprise Intelligence Platforms.</p>
 
         <div className="flex items-center justify-center gap-6 mt-3">
           <button className="hover:text-gray-300">Privacy Policy</button>
