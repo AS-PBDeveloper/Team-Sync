@@ -13,5 +13,3 @@ export let loginEmployee = createAsyncThunk(
     }
   },
 );
-
-export { loginEmployee };
