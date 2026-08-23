@@ -1,9 +1,10 @@
-import React from "react";
-import { Cloud, ArrowRightToLine } from "lucide-react";
+import React, { useState } from "react";
+import { Cloud, ArrowRightToLine, Eye, EyeOff } from "lucide-react";
 import { useAuth } from "../../hooks/useAuth";
 
 const Login = () => {
   let { register, handleSubmit, onLoginSubmit, errors, navigate } = useAuth();
+  const [showPassword, setShowPassword] = useState(false);
 
   return (
     <div className="min-h-screen bg-[#09070F] relative overflow-hidden flex items-center justify-center px-4">
@@ -105,14 +106,26 @@ const Login = () => {
               </button>
             </div>
 
-            <input
-              type="password"
-              placeholder="••••••••"
-              className="w-full h-14 rounded-xl bg-[#09070F] border border-white/10 px-5 text-white outline-none focus:border-purple-500 placeholder:text-gray-500"
-              {...register("password", {
-                required: "Password is required",
-              })}
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="••••••••"
+                className="w-full h-14 rounded-xl bg-[#09070F] border border-white/10 px-5 pr-14 text-white outline-none focus:border-purple-500 placeholder:text-gray-500"
+                {...register("password", {
+                  required: "Password is required",
+                })}
+              />
+
+              <button
+                type="button"
+                onClick={() => setShowPassword((visible) => !visible)}
+                aria-label={showPassword ? "Hide password" : "Show password"}
+                title={showPassword ? "Hide password" : "Show password"}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white transition"
+              >
+                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+              </button>
+            </div>
 
             {errors.password && (
               <p className="text-red-400 text-sm mt-2">

@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { User, Mail, Lock, Sparkles, ShieldCheck } from "lucide-react";
+import {
+  User,
+  Mail,
+  Lock,
+  Sparkles,
+  ShieldCheck,
+  Eye,
+  EyeOff,
+} from "lucide-react";
 import { useAuth } from "../../hooks/useAuth";
 
 const Register = () => {
   let { register, handleSubmit, onRegisterSubmit, errors, navigate } =
     useAuth();
+  const [showPassword, setShowPassword] = useState(false);
 
   return (
     <div className="min-h-screen bg-[#09070F] text-white flex flex-col">
@@ -138,9 +147,9 @@ const Register = () => {
                   <Lock className="text-gray-500" size={20} />
 
                   <input
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     placeholder="••••••••"
-                    className="bg-transparent w-full h-full outline-none px-4 text-white placeholder:text-gray-500"
+                    className="bg-transparent w-full h-full outline-none px-4 pr-12 text-white placeholder:text-gray-500"
                     {...register("password", {
                       required: "Password is required",
                       minLength: {
@@ -149,6 +158,16 @@ const Register = () => {
                       },
                     })}
                   />
+
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword((visible) => !visible)}
+                    aria-label={showPassword ? "Hide password" : "Show password"}
+                    title={showPassword ? "Hide password" : "Show password"}
+                    className="text-gray-400 hover:text-white transition"
+                  >
+                    {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                  </button>
                 </div>
 
                 {/* Password Strength */}
