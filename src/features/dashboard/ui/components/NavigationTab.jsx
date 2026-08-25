@@ -12,7 +12,7 @@ const NavigationTab = ({ path, title, Icon }) => {
       to={path}
       end="/"
     >
-      {Icon && <Icon size={23} />}
+      {Icon && React.cloneElement(Icon, { size: 23 })}
       {title}
     </NavLink>
   );

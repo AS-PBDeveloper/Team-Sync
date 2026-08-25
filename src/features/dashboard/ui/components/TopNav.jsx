@@ -1,7 +1,16 @@
 import { Bell, Lightbulb, Menu, Moon, Search } from "lucide-react";
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleTheme } from "../../../../shared/state/themeSlice";
 
 const TopNav = () => {
+  const { mode } = useSelector((store) => store.theme);
+  const dispatch = useDispatch();
+
+  const handleThemeChange = () => {
+    dispatch(toggleTheme());
+  };
+
   return (
     <div className="flex justify-between bg-(--bg-card) items-center">
       <div className="flex gap-4 items-center w-[30%] rounded px-3 py-2 bg-(--bg-surface) border border-gray-600">
