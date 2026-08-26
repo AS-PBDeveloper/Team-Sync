@@ -18,10 +18,8 @@ const AppRoutes = () => {
   let dispatch = useDispatch();
 
   useEffect(() => {
-    (() => {
-      dispatch(currentLoggedEmployee());
-    })();
-  }, []);
+    dispatch(currentLoggedEmployee());
+  }, [dispatch]);
 
   let router = createBrowserRouter([
     {

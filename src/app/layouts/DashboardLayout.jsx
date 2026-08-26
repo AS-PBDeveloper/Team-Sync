@@ -20,7 +20,7 @@ const DashboardLayout = () => {
       <div className="border-r border-gray-500">
         <AsideNav />
       </div>
-      <div className="flex flex-col gap-5 px-6 py-4 bg-[--primary] overflow-auto">
+      <div className="flex flex-col gap-5 px-6 py-4 bg-[var(--primary)] overflow-auto">
         <TopNav />
 
         <div className="h-full overflow-auto">
