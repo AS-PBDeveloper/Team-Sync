@@ -4,6 +4,8 @@ import EmployeeHeader from "../components/employees/EmployeeHeader";
 import SearchFilterBar from "../components/employees/SearchFilterBar";
 import EmployeeStats from "../components/employees/EmployeeStats";
 import EmployeeTable from "../components/employees/EmployeeTable";
+import Pagination from "../components/employees/Pagination";
+import { Outlet } from "react-router";
 
 const Employee = () => {
   let {
@@ -20,7 +22,8 @@ const Employee = () => {
 
   return (
     <div className="min-h-screen bg-[var(--bg-main)] p-8">
-      <div className=" mx-auto">
+      <div className="mx-auto">
+        <Outlet />
         {/* HEADER */}
         <EmployeeHeader />
 
@@ -37,6 +40,11 @@ const Employee = () => {
           {isFetching && <h1>Loading next page data</h1>}
 
           <EmployeeTable employees={data?.employees} />
+
+          <Pagination
+            pagination={data?.pagination}
+            onPageChange={handlePageChange}
+          />
         </div>
       </div>
     </div>
