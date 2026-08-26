@@ -2,6 +2,8 @@ import React from "react";
 import { NavLink } from "react-router";
 
 const NavigationTab = ({ path, title, Icon }) => {
+  const IconComponent = Icon;
+
   return (
     <NavLink
       className={({ isActive }) =>
@@ -12,7 +14,7 @@ const NavigationTab = ({ path, title, Icon }) => {
       to={path}
       end="/"
     >
-      {Icon && React.cloneElement(Icon, { size: 23 })}
+      {IconComponent ? <IconComponent size={23} /> : null}
       {title}
     </NavLink>
   );

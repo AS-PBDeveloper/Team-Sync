@@ -1,10 +1,8 @@
 import React from "react";
 import NavigationTab from "./NavigationTab";
 import { useSelector } from "react-redux";
-import {
-  adminNavigation,
-  employeeNavigation,
-} from "../../../../app/constants/navigations";
+import { adminNavigation } from "../../../../app/constants/navigations/adminNavigation";
+import { employeeNavigation } from "../../../../app/constants/navigations/employeeNavigation";
 
 const AsideNav = () => {
   let { employee } = useSelector((store) => store.auth);
