@@ -11,12 +11,14 @@ import {
   RotateCcw,
 } from "lucide-react";
 import { useEmployee } from "../../../employees/hooks/useEmployees";
+import { useDepartment } from "../../hooks/useDepartment";
 import { createDepartmentApi } from "../../api/departmentApi";
 import { useNavigate } from "react-router";
 
 const DepartmentPage = () => {
-  let navigate = useNavigate();
-  let { data, isPending } = useEmployee();
+  const navigate = useNavigate();
+  const { data, isPending } = useEmployee();
+  const { data: departmentData } = useDepartment();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -25,17 +27,9 @@ const DepartmentPage = () => {
     employees: [],
   });
 
-  const employees = [
-    { id: "1", name: "Rahul Sharma", email: "rahul@company.com" },
-    { id: "2", name: "Priya Verma", email: "priya@company.com" },
-    { id: "3", name: "Amit Patel", email: "amit@company.com" },
-    { id: "4", name: "Sneha Gupta", email: "sneha@company.com" },
-    { id: "5", name: "Vikas Singh", email: "vikas@company.com" },
-  ];
-
-  // Dummy data for UI preview only
-
   const [search, setSearch] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const inputClass =
     "w-full rounded-xl border border-(--border-color) bg-(--bg-main) px-4 py-3 text-sm text-(--text-primary) placeholder:text-(--text-muted) outline-none transition focus:border-(--tertiary) focus:ring-2 focus:ring-(--tertiary)/20";
@@ -43,11 +37,15 @@ const DepartmentPage = () => {
   const labelClass =
     "mb-2 block text-sm font-medium text-(--text-secondary)";
 
-  const filteredEmployees = data?.employees.filter(
-    (employee) =>
-      employee.name.toLowerCase().includes(search.toLowerCase()) ||
-      employee.email.toLowerCase().includes(search.toLowerCase()),
-  );
+  const employees = Array.isArray(data?.employees) ? data.employees : [];
+  const filteredEmployees = employees.filter((employee) => {
+    const query = search.toLowerCase().trim();
+
+    return (
+      employee.name?.toLowerCase().includes(query) ||
+      employee.email?.toLowerCase().includes(query)
+    );
+  });
 
   const handleEmployeeToggle = (id) => {
     setFormData((prev) => ({
@@ -68,18 +66,30 @@ const DepartmentPage = () => {
     setSearch("");
   };
 
-  const selectedManager = data?.employees.find(
-    (employee) => employee.id === formData.manager,
+  const selectedManager = employees.find(
+    (employee) => employee._id === formData.manager,
   );
 
   if (isPending) return <h1>Loading employees</h1>;
 
-  let handleDepartmentFormSubmit = async (e) => {
+  const handleDepartmentFormSubmit = async (e) => {
     e.preventDefault();
-    let response = await createDepartmentApi(formData);
-    console.log(response);
-    resetForm();
-    alert("Department created successfully");
+    setIsSubmitting(true);
+    setSubmitError("");
+
+    try {
+      await createDepartmentApi(formData);
+      resetForm();
+      alert("Department created successfully");
+    } catch (error) {
+      setSubmitError(
+        error?.response?.data?.message ||
+          error?.message ||
+          "Unable to create department. Please try again.",
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -110,19 +120,27 @@ const DepartmentPage = () => {
               </div>
               <div>
                 <p className="text-xs text-(--text-muted)">Departments</p>
-                <p className="text-xl font-bold">04</p>
+                <p className="text-xl font-bold">
+                  {(departmentData?.data?.length ?? 0)
+                    .toString()
+                    .padStart(2, "0")}
+                </p>
               </div>
             </div>
-            <div className="flex cursor-pointer items-center gap-3 rounded-xl border border-(--border-color) bg-(--bg-surface) p-4">
+            <button
+              type="button"
+              onClick={() => navigate("/home/all-departments")}
+              className="flex cursor-pointer items-center gap-3 rounded-xl border border-(--border-color) bg-(--bg-surface) p-4 text-left transition hover:bg-(--bg-hover)"
+            >
               <div className="flex size-10 items-center justify-center rounded-xl bg-(--tertiary)/15 text-(--tertiary)">
                 <Building2 size={20} />
               </div>
-              <div onClick={() => navigate("/home/all-departments")}>
+              <div>
                 <p className="text-xs text-(--text-muted)">
                   All Departments
                 </p>
               </div>
-            </div>
+            </button>
           </div>
         </div>
 
@@ -156,37 +174,46 @@ const DepartmentPage = () => {
 
                 <div className="space-y-5">
                   <div>
-                    <label className={labelClass}>
+                    <label htmlFor="department-name" className={labelClass}>
                       Department Name
                       <span className="ml-1 text-(--danger)">*</span>
                     </label>
 
                     <input
+                      id="department-name"
                       type="text"
                       placeholder="e.g. Engineering"
+                      required
                       value={formData.name}
                       onChange={(e) =>
-                        setFormData({
-                          ...formData,
+                        setFormData((prev) => ({
+                          ...prev,
                           name: e.target.value,
-                        })
+                        }))
                       }
                       className={inputClass}
                     />
                   </div>
 
                   <div>
-                    <label className={labelClass}>Description</label>
+                    <label
+                      htmlFor="department-description"
+                      className={labelClass}
+                    >
+                      Description
+                    </label>
 
                     <textarea
+                      id="department-description"
                       rows={4}
                       placeholder="Describe the department's purpose and responsibilities..."
+                      maxLength={500}
                       value={formData.description}
                       onChange={(e) =>
-                        setFormData({
-                          ...formData,
+                        setFormData((prev) => ({
+                          ...prev,
                           description: e.target.value,
-                        })
+                        }))
                       }
                       className={`${inputClass} resize-y`}
                     />
@@ -207,24 +234,26 @@ const DepartmentPage = () => {
                   <h3 className="font-semibold">Department Manager</h3>
                 </div>
 
-                <label className={labelClass}>
+                <label htmlFor="department-manager" className={labelClass}>
                   Select Manager
                   <span className="ml-1 text-(--danger)">*</span>
                 </label>
 
                 <div className="relative">
                   <select
+                    id="department-manager"
                     value={formData.manager}
+                    required
                     onChange={(e) =>
-                      setFormData({
-                        ...formData,
+                      setFormData((prev) => ({
+                        ...prev,
                         manager: e.target.value,
-                      })
+                      }))
                     }
                     className={`${inputClass} appearance-none pr-10`}
                   >
                     <option value="">Choose a manager</option>
-                    {data?.employees?.map((employee) => (
+                    {employees.map((employee) => (
                       <option key={employee._id} value={employee._id}>
                         {employee.name}
                       </option>
@@ -292,49 +321,60 @@ const DepartmentPage = () => {
                 </div>
 
                 <div className="max-h-64 space-y-2 overflow-y-auto pr-1">
-                  {filteredEmployees.map((employee) => {
-                    const selected = formData.employees.includes(employee.id);
+                  {filteredEmployees.length > 0 ? (
+                    filteredEmployees.map((employee) => {
+                      const selected = formData.employees.includes(
+                        employee._id,
+                      );
 
-                    return (
-                      <label
-                        key={employee._id}
-                        className={`flex cursor-pointer items-center gap-3 rounded-xl border p-3 transition ${
-                          selected
-                            ? "border-(--tertiary) bg-(--tertiary)/10"
-                            : "border-(--border-color) hover:bg-(--bg-hover)"
-                        }`}
-                      >
-                        <input
-                          type="checkbox"
-                          checked={selected}
-                          onChange={() => handleEmployeeToggle(employee._id)}
-                          className="size-4 accent-(--tertiary)"
-                        />
+                      return (
+                        <label
+                          key={employee._id}
+                          className={`flex cursor-pointer items-center gap-3 rounded-xl border p-3 transition ${
+                            selected
+                              ? "border-(--tertiary) bg-(--tertiary)/10"
+                              : "border-(--border-color) hover:bg-(--bg-hover)"
+                          }`}
+                        >
+                          <input
+                            type="checkbox"
+                            aria-label={`Assign ${employee.name} to this department`}
+                            checked={selected}
+                            onChange={() =>
+                              handleEmployeeToggle(employee._id)
+                            }
+                            className="size-4 accent-(--tertiary)"
+                          />
 
-                        <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-(--bg-card) text-xs font-semibold">
-                          {employee.name
-                            .split(" ")
-                            .map((word) => word[0])
-                            .join("")}
-                        </div>
+                          <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-(--bg-card) text-xs font-semibold">
+                            {employee.name
+                              .split(" ")
+                              .map((word) => word[0])
+                              .join("")}
+                          </div>
 
-                        <div className="min-w-0 flex-1">
-                          <p className="truncate text-sm font-medium">
-                            {employee.name}
-                          </p>
-                          <p className="truncate text-xs text-(--text-muted)">
-                            {employee.email}
-                          </p>
-                        </div>
+                          <div className="min-w-0 flex-1">
+                            <p className="truncate text-sm font-medium">
+                              {employee.name}
+                            </p>
+                            <p className="truncate text-xs text-(--text-muted)">
+                              {employee.email}
+                            </p>
+                          </div>
 
-                        {selected && (
-                          <span className="text-xs font-medium text-(--tertiary)">
-                            Selected
-                          </span>
-                        )}
-                      </label>
-                    );
-                  })}
+                          {selected && (
+                            <span className="text-xs font-medium text-(--tertiary)">
+                              Selected
+                            </span>
+                          )}
+                        </label>
+                      );
+                    })
+                  ) : (
+                    <p className="rounded-xl border border-dashed border-(--border-color) p-4 text-center text-sm text-(--text-muted)">
+                      No employees found.
+                    </p>
+                  )}
                 </div>
 
                 {/* Selected Employee Chips */}
@@ -347,17 +387,18 @@ const DepartmentPage = () => {
                     <div className="flex flex-wrap gap-2">
                       {employees
                         .filter((employee) =>
-                          formData.employees.includes(employee.id),
+                          formData.employees.includes(employee._id),
                         )
                         .map((employee) => (
                           <span
-                            key={employee.id}
+                            key={employee._id}
                             className="flex items-center gap-2 rounded-lg border border-(--border-color) bg-(--bg-main) px-3 py-2 text-xs"
                           >
                             {employee.name}
                             <button
                               type="button"
-                              onClick={() => handleEmployeeToggle(employee.id)}
+                              aria-label={`Remove ${employee.name}`}
+                              onClick={() => handleEmployeeToggle(employee._id)}
                               className="text-(--text-muted) hover:text-(--danger)"
                             >
                               <X size={14} />
@@ -369,20 +410,35 @@ const DepartmentPage = () => {
                 )}
               </div>
 
-              {/* Buttons: UI only */}
+              {submitError && (
+                <p
+                  role="alert"
+                  className="rounded-xl border border-(--danger)/30 bg-(--danger)/10 p-3 text-sm text-(--danger)"
+                >
+                  {submitError}
+                </p>
+              )}
+
               <div className="flex flex-col-reverse gap-3 border-t border-(--border-color) pt-5 sm:flex-row sm:justify-end">
                 <button
                   type="button"
-                  onClick={resetForm}
+                  onClick={() => {
+                    resetForm();
+                    setSubmitError("");
+                  }}
                   className="flex items-center justify-center gap-2 rounded-xl border border-(--border-color) px-5 py-3 text-sm font-medium transition hover:bg-(--bg-hover)"
                 >
                   <RotateCcw size={16} />
                   Reset
                 </button>
 
-                <button className="flex items-center justify-center gap-2 rounded-xl bg-(--tertiary) px-6 py-3 text-sm font-semibold text-(--primary) transition hover:brightness-110">
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="flex items-center justify-center gap-2 rounded-xl bg-(--tertiary) px-6 py-3 text-sm font-semibold text-(--primary) transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
+                >
                   <Plus size={18} />
-                  Create Department
+                  {isSubmitting ? "Creating..." : "Create Department"}
                 </button>
               </div>
             </form>

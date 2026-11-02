@@ -1,12 +1,8 @@
 import { axiosInstance } from "../../../../config/axiosInstance";
 
 export const createDepartmentApi = async (data) => {
-  try {
-    let response = await axiosInstance.post("/departments/create", data);
-    return response;
-  } catch (error) {
-    console.log("error in department creation", error);
-  }
+  const response = await axiosInstance.post("/departments/create", data);
+  return response;
 };
 
 export const getAllDepartmentsApi = async () => {
