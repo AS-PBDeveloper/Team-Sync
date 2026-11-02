@@ -27,21 +27,21 @@ const EmployeeActions = ({ onEdit, onDelete, onInactive, employee }) => {
       {/* BUTTON */}
       <button
         onClick={() => setOpen(!open)}
-        className="w-10 h-10 rounded-xl hover:bg-[var(--bg-hover)] flex items-center justify-center transition-all"
+        className="w-10 h-10 rounded-xl hover:bg-(--bg-hover) flex items-center justify-center transition-all"
       >
-        <MoreVertical size={20} className="text-[var(--text-muted)]" />
+        <MoreVertical size={20} className="text-(--text-muted)" />
       </button>
 
       {/* DROPDOWN */}
       {open && (
-        <div className="absolute right-0 top-12 w-52 rounded-2xl border border-[var(--border-color)] bg-[var(--bg-surface)] shadow-xl p-2 z-50">
+        <div className="absolute right-0 top-12 w-52 rounded-2xl border border-(--border-color) bg-(--bg-surface) shadow-xl p-2 z-50">
           {/* UPDATE */}
           <button
             onClick={() => {
               onEdit?.();
               setOpen(false);
             }}
-            className="w-full h-12 px-4 rounded-xl flex items-center gap-3 hover:bg-[var(--bg-hover)] transition-all text-[var(--text-primary)]"
+            className="w-full h-12 px-4 rounded-xl flex items-center gap-3 hover:bg-(--bg-hover) transition-all text-(--text-primary)"
           >
             <Pencil size={18} />
             Update Employee
@@ -53,7 +53,7 @@ const EmployeeActions = ({ onEdit, onDelete, onInactive, employee }) => {
                 onInactive?.();
                 setOpen(false);
               }}
-              className="w-full h-12 px-4 rounded-xl flex items-center gap-3 hover:bg-[var(--bg-hover)] transition-all text-orange-500"
+              className="w-full h-12 px-4 rounded-xl flex items-center gap-3 hover:bg-(--bg-hover) transition-all text-orange-500"
             >
               <UserX size={18} />
               Mark Inactive
@@ -64,7 +64,7 @@ const EmployeeActions = ({ onEdit, onDelete, onInactive, employee }) => {
                 onInactive?.();
                 setOpen(false);
               }}
-              className="w-full h-12 px-4 rounded-xl flex items-center gap-3 hover:bg-[var(--bg-hover)] transition-all text-orange-500"
+              className="w-full h-12 px-4 rounded-xl flex items-center gap-3 hover:bg-(--bg-hover) transition-all text-orange-500"
             >
               <UserX size={18} />
               Mark Active

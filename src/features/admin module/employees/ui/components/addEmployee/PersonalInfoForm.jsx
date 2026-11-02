@@ -6,12 +6,12 @@ import FormTextarea from "./FormTextarea";
 
 const PersonalInfoForm = ({ register, errors, setValue, watch }) => {
   return (
-    <div className="bg-[var(--bg-surface)] border border-[var(--border-color)] rounded-3xl p-8">
+    <div className="bg-(--bg-surface) border border-(--border-color) rounded-3xl p-8">
       {/* TITLE */}
-      <div className="flex items-center gap-4 pb-6 border-b border-[var(--border-color)]">
-        <User size={28} className="text-[var(--primary)]" />
+      <div className="flex items-center gap-4 pb-6 border-b border-(--border-color)">
+        <User size={28} className="text-(--primary)" />
 
-        <h2 className="text-4xl font-bold text-[var(--text-primary)]">
+        <h2 className="text-4xl font-bold text-(--text-primary)">
           Personal Information
         </h2>
       </div>

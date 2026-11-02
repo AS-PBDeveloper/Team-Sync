@@ -2,12 +2,12 @@ import { BriefcaseBusiness } from "lucide-react";
 
 const EmploymentDetailsForm = ({ register, errors }) => {
   return (
-    <div className="bg-[var(--bg-surface)] border border-[var(--border-color)] rounded-3xl p-8 mt-8">
+    <div className="bg-(--bg-surface) border border-(--border-color) rounded-3xl p-8 mt-8">
       {/* TITLE */}
-      <div className="flex items-center gap-4 pb-6 border-b border-[var(--border-color)]">
-        <BriefcaseBusiness size={28} className="text-[var(--primary)]" />
+      <div className="flex items-center gap-4 pb-6 border-b border-(--border-color)">
+        <BriefcaseBusiness size={28} className="text-(--primary)" />
 
-        <h2 className="text-4xl font-bold text-[var(--text-primary)]">
+        <h2 className="text-4xl font-bold text-(--text-primary)">
           Employment Details
         </h2>
       </div>
@@ -16,13 +16,13 @@ const EmploymentDetailsForm = ({ register, errors }) => {
       <div className="grid grid-cols-2 gap-6 mt-8">
         {/* DEPARTMENT */}
         <div>
-          <label className="block mb-3 text-sm font-semibold text-[var(--text-secondary)]">
+          <label className="block mb-3 text-sm font-semibold text-(--text-secondary)">
             Department
           </label>
 
           <select
             {...register("department")}
-            className="w-full h-16 rounded-2xl border border-[var(--border-color)] bg-[var(--bg-main)] px-5 outline-none"
+            className="w-full h-16 rounded-2xl border border-(--border-color) bg-(--bg-main) px-5 outline-none"
           >
             <option value="">Select Department</option>
 
@@ -38,13 +38,13 @@ const EmploymentDetailsForm = ({ register, errors }) => {
 
         {/* ROLE */}
         <div>
-          <label className="block mb-3 text-sm font-semibold text-[var(--text-secondary)]">
+          <label className="block mb-3 text-sm font-semibold text-(--text-secondary)">
             Role
           </label>
 
           <select
             {...register("role")}
-            className="w-full h-16 rounded-2xl border border-[var(--border-color)] bg-[var(--bg-main)] px-5 outline-none"
+            className="w-full h-16 rounded-2xl border border-(--border-color) bg-(--bg-main) px-5 outline-none"
           >
             <option value="">Select Role</option>
 
@@ -56,20 +56,20 @@ const EmploymentDetailsForm = ({ register, errors }) => {
 
         {/* JOINING DATE */}
         <div>
-          <label className="block mb-3 text-sm font-semibold text-[var(--text-secondary)]">
+          <label className="block mb-3 text-sm font-semibold text-(--text-secondary)">
             Joining Date
           </label>
 
           <input
             type="date"
             {...register("joiningDate")}
-            className="w-full h-16 rounded-2xl border border-[var(--border-color)] bg-[var(--bg-main)] px-5 outline-none"
+            className="w-full h-16 rounded-2xl border border-(--border-color) bg-(--bg-main) px-5 outline-none"
           />
         </div>
 
         {/* STATUS */}
         <div>
-          <label className="block mb-4 text-sm font-semibold text-[var(--text-secondary)]">
+          <label className="block mb-4 text-sm font-semibold text-(--text-secondary)">
             Status
           </label>
 

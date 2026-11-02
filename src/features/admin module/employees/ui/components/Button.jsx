@@ -1,9 +1,9 @@
 const Button = ({ children, icon, variant = "primary", handleClick }) => {
   const variants = {
-    primary: "bg-[var(--primary)] text-white hover:opacity-90",
+    primary: "bg-(--primary) text-white hover:opacity-90",
 
     secondary:
-      "bg-[var(--bg-surface)] border border-[var(--border-color)] text-[var(--text-primary)]",
+      "bg-(--bg-surface) border border-(--border-color) text-(--text-primary)",
   };
 
   return (

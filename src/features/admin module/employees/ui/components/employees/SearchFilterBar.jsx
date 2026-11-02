@@ -3,13 +3,13 @@ import { Search, ChevronDown } from "lucide-react";
 const SearchFilterBar = ({ filters, handleSearchFilters }) => {
   console.log("filters", filters);
   return (
-    <div className="p-6 border-b border-[var(--border-color)]">
+    <div className="p-6 border-b border-(--border-color)">
       {/* SEARCH */}
       <div className="flex items-center justify-between gap-6 flex-wrap">
         <div className="relative w-full max-w-105">
           <Search
             size={18}
-            className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--text-muted)]"
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-(--text-muted)"
           />
 
           <input
@@ -17,7 +17,7 @@ const SearchFilterBar = ({ filters, handleSearchFilters }) => {
             placeholder="Filter by name or keyword..."
             value={filters.search}
             onChange={(e) => handleSearchFilters("search", e.target.value)}
-            className="w-full h-14 rounded-2xl bg-[var(--bg-main)] border border-[var(--border-color)] pl-12 pr-4 outline-none text-[var(--text-primary)]"
+            className="w-full h-14 rounded-2xl bg-(--bg-main) border border-(--border-color) pl-12 pr-4 outline-none text-(--text-primary)"
           />
         </div>
       </div>
@@ -29,7 +29,7 @@ const SearchFilterBar = ({ filters, handleSearchFilters }) => {
           <select
             value={filters.role}
             onChange={(e) => handleSearchFilters("role", e.target.value)}
-            className="appearance-none px-5 pr-12 h-14 rounded-2xl border border-[var(--border-color)] bg-[var(--bg-main)] text-[var(--text-primary)] min-w-55 outline-none"
+            className="appearance-none px-5 pr-12 h-14 rounded-2xl border border-(--border-color) bg-(--bg-main) text-(--text-primary) min-w-55 outline-none"
           >
             <option value="">All Roles</option>
 
@@ -40,7 +40,7 @@ const SearchFilterBar = ({ filters, handleSearchFilters }) => {
 
           <ChevronDown
             size={18}
-            className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[var(--text-muted)]"
+            className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-(--text-muted)"
           />
         </div>
 
@@ -49,7 +49,7 @@ const SearchFilterBar = ({ filters, handleSearchFilters }) => {
           <select
             value={filters.department}
             onChange={(e) => handleSearchFilters("department", e.target.value)}
-            className="appearance-none px-5 pr-12 h-14 rounded-2xl border border-[var(--border-color)] bg-[var(--bg-main)] text-[var(--text-primary)] min-w-60 outline-none"
+            className="appearance-none px-5 pr-12 h-14 rounded-2xl border border-(--border-color) bg-(--bg-main) text-(--text-primary) min-w-60 outline-none"
           >
             <option value="">All Departments</option>
 
@@ -64,7 +64,7 @@ const SearchFilterBar = ({ filters, handleSearchFilters }) => {
 
           <ChevronDown
             size={18}
-            className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[var(--text-muted)]"
+            className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-(--text-muted)"
           />
         </div>
 
@@ -73,7 +73,7 @@ const SearchFilterBar = ({ filters, handleSearchFilters }) => {
           <select
             value={filters.status}
             onChange={(e) => handleSearchFilters("status", e.target.value)}
-            className="appearance-none px-5 pr-12 h-14 rounded-2xl border border-[var(--border-color)] bg-[var(--bg-main)] text-[var(--text-primary)] min-w-55 outline-none"
+            className="appearance-none px-5 pr-12 h-14 rounded-2xl border border-(--border-color) bg-(--bg-main) text-(--text-primary) min-w-55 outline-none"
           >
             <option value="">All Status</option>
 
@@ -84,7 +84,7 @@ const SearchFilterBar = ({ filters, handleSearchFilters }) => {
 
           <ChevronDown
             size={18}
-            className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[var(--text-muted)]"
+            className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-(--text-muted)"
           />
         </div>
       </div>

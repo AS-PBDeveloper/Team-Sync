@@ -8,11 +8,11 @@ const EmployeeHeader = () => {
   return (
     <div className="flex items-start justify-between">
       <div>
-        <h1 className="text-5xl font-bold text-[var(--text-primary)]">
+        <h1 className="text-5xl font-bold text-(--text-primary)">
           Employee Directory
         </h1>
 
-        <p className="mt-2 text-lg text-[var(--text-secondary)]">
+        <p className="mt-2 text-lg text-(--text-secondary)">
           Manage your organization's workforce and roles.
         </p>
       </div>

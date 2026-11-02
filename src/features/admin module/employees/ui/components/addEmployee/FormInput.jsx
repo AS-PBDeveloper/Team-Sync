@@ -8,7 +8,7 @@ const FormInput = ({
 }) => {
   return (
     <div>
-      <label className="block mb-3 text-sm font-semibold text-[var(--text-secondary)]">
+      <label className="block mb-3 text-sm font-semibold text-(--text-secondary)">
         {label}
       </label>
 
@@ -18,7 +18,7 @@ const FormInput = ({
         {...register(name, {
           required: `${label} is required`,
         })}
-        className="w-full h-16 rounded-2xl border border-[var(--border-color)] bg-[var(--bg-main)] px-5 outline-none"
+        className="w-full h-16 rounded-2xl border border-(--border-color) bg-(--bg-main) px-5 outline-none"
       />
 
       {errors?.[name] && (

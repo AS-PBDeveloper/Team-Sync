@@ -9,7 +9,7 @@ const NavigationTab = ({ path, title, Icon }) => {
       className={({ isActive }) =>
         `flex gap-3 pl-4 py-2 ${
           isActive
-            ? "border-r-4 border-[var(--primary)] bg-[var(--secondary)]"
+            ? "border-r-4 border-(--primary) bg-(--secondary)"
             : ""
         }`
       }

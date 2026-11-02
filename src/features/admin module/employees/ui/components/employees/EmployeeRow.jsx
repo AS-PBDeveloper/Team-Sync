@@ -4,7 +4,7 @@ import StatusBadge from "./StatusBadge";
 
 const EmployeeRow = ({ employee }) => {
   return (
-    <tr className="border-b border-[var(--border-color)]">
+    <tr className="border-b border-(--border-color)">
       {/* PROFILE */}
       <td className="py-6 px-6">
         <div className="flex items-center gap-4">
@@ -18,11 +18,11 @@ const EmployeeRow = ({ employee }) => {
           />
 
           <div>
-            <h3 className="font-semibold text-lg text-[var(--text-primary)]">
+            <h3 className="font-semibold text-lg text-(--text-primary)">
               {employee.name}
             </h3>
 
-            <p className="text-[var(--text-secondary)]">{employee.email}</p>
+            <p className="text-(--text-secondary)">{employee.email}</p>
           </div>
         </div>
       </td>
@@ -35,7 +35,7 @@ const EmployeeRow = ({ employee }) => {
       </td>
 
       {/* DEPARTMENT */}
-      <td className="px-6 text-[var(--text-primary)] capitalize">
+      <td className="px-6 text-(--text-primary) capitalize">
         {employee.department}
       </td>
 
@@ -45,7 +45,7 @@ const EmployeeRow = ({ employee }) => {
       </td>
 
       {/* DATE */}
-      <td className="px-6 text-[var(--text-secondary)]">
+      <td className="px-6 text-(--text-secondary)">
         {new Date(employee.createdAt).toDateString()}
       </td>
 

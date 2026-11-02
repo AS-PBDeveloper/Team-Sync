@@ -21,7 +21,7 @@ const Employee = () => {
   if (isPending) return <h1>Loading...</h1>;
 
   return (
-    <div className="min-h-screen bg-[var(--bg-main)] p-8">
+    <div className="min-h-screen bg-(--bg-main) p-8">
       <div className="mx-auto">
         <Outlet />
         {/* HEADER */}
@@ -31,7 +31,7 @@ const Employee = () => {
         <EmployeeStats employees={data?.employees} />
 
         {/* TABLE SECTION */}
-        <div className="mt-8 bg-[var(--bg-surface)] border border-[var(--border-color)] rounded-3xl overflow-hidden">
+        <div className="mt-8 bg-(--bg-surface) border border-(--border-color) rounded-3xl overflow-hidden">
           <SearchFilterBar
             filters={filters}
             handleSearchFilters={handleSearchFilters}
