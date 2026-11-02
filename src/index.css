@@ -76,3 +76,60 @@ body {
   color: var(--text-primary);
   transition: 0.3s ease;
 }
+
+.employee-list-scrollbar {
+  scrollbar-color: var(--text-muted) var(--bg-main);
+  scrollbar-width: thin;
+}
+
+.employee-list-scrollbar::-webkit-scrollbar {
+  width: 10px;
+}
+
+.employee-list-scrollbar::-webkit-scrollbar-track {
+  background: var(--bg-main);
+}
+
+.employee-list-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--text-muted);
+  border: 2px solid var(--bg-main);
+  border-radius: 9999px;
+}
+
+.employee-list-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: var(--tertiary);
+}
+
+.employee-assignment-checkbox {
+  appearance: none;
+  display: grid;
+  flex: none;
+  place-content: center;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background-color: var(--bg-main);
+  cursor: pointer;
+}
+
+.employee-assignment-checkbox:checked {
+  border-color: var(--tertiary);
+  background-color: var(--tertiary);
+}
+
+.employee-assignment-checkbox::before {
+  width: 0.45em;
+  height: 0.25em;
+  border-bottom: 2px solid #141218;
+  border-left: 2px solid #141218;
+  content: "";
+  transform: rotate(-45deg) scale(0);
+}
+
+.employee-assignment-checkbox:checked::before {
+  transform: rotate(-45deg) scale(1);
+}
+
+.employee-assignment-checkbox:focus-visible {
+  outline: 2px solid var(--tertiary);
+  outline-offset: 2px;
+}

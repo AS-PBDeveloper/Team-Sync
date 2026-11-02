@@ -34,8 +34,7 @@ const DepartmentPage = () => {
   const inputClass =
     "w-full rounded-xl border border-(--border-color) bg-(--bg-main) px-4 py-3 text-sm text-(--text-primary) placeholder:text-(--text-muted) outline-none transition focus:border-(--tertiary) focus:ring-2 focus:ring-(--tertiary)/20";
 
-  const labelClass =
-    "mb-2 block text-sm font-medium text-(--text-secondary)";
+  const labelClass = "mb-2 block text-sm font-medium text-(--text-secondary)";
 
   const employees = Array.isArray(data?.employees) ? data.employees : [];
   const filteredEmployees = employees.filter((employee) => {
@@ -136,9 +135,7 @@ const DepartmentPage = () => {
                 <Building2 size={20} />
               </div>
               <div>
-                <p className="text-xs text-(--text-muted)">
-                  All Departments
-                </p>
+                <p className="text-xs text-(--text-muted)">All Departments</p>
               </div>
             </button>
           </div>
@@ -320,7 +317,7 @@ const DepartmentPage = () => {
                   />
                 </div>
 
-                <div className="max-h-64 space-y-2 overflow-y-auto pr-1">
+                <div className="employee-list-scrollbar max-h-64 space-y-2 overflow-y-auto pr-1">
                   {filteredEmployees.length > 0 ? (
                     filteredEmployees.map((employee) => {
                       const selected = formData.employees.includes(
@@ -340,10 +337,8 @@ const DepartmentPage = () => {
                             type="checkbox"
                             aria-label={`Assign ${employee.name} to this department`}
                             checked={selected}
-                            onChange={() =>
-                              handleEmployeeToggle(employee._id)
-                            }
-                            className="size-4 accent-(--tertiary)"
+                            onChange={() => handleEmployeeToggle(employee._id)}
+                            className="employee-assignment-checkbox size-4"
                           />
 
                           <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-(--bg-card) text-xs font-semibold">
@@ -487,9 +482,7 @@ const DepartmentPage = () => {
                     <Users size={18} className="text-(--tertiary)" />
                   </div>
                   <div>
-                    <p className="text-xs text-(--text-muted)">
-                      Team Members
-                    </p>
+                    <p className="text-xs text-(--text-muted)">Team Members</p>
                     <p className="text-sm font-medium">
                       {formData.employees.length} employees
                     </p>
