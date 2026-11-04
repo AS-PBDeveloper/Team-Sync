@@ -3,6 +3,7 @@ import AddEmployeeHeader from "../components/addEmployee/AddEmployeeHeader";
 import EmploymentDetailsForm from "../components/addEmployee/EmploymentDetailsForm";
 import FormActions from "../components/addEmployee/FormActions";
 import PersonalInfoForm from "../components/addEmployee/PersonalInfoForm";
+import { createEmployee } from "../../api/employeeApis";
 import { useForm } from "react-hook-form";
 
 const AddEmployee = () => {
@@ -58,7 +59,7 @@ const AddEmployee = () => {
           />
 
           {/* EMPLOYMENT DETAILS */}
-          <EmploymentDetailsForm register={register} errors={errors} />
+          <EmploymentDetailsForm register={register} />
 
           {/* ACTIONS */}
           <FormActions />

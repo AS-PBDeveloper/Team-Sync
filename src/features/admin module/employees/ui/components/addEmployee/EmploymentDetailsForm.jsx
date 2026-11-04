@@ -1,6 +1,6 @@
 import { BriefcaseBusiness } from "lucide-react";
 
-const EmploymentDetailsForm = ({ register, errors }) => {
+const EmploymentDetailsForm = ({ register }) => {
   return (
     <div className="bg-(--bg-surface) border border-(--border-color) rounded-3xl p-8 mt-8">
       {/* TITLE */}
